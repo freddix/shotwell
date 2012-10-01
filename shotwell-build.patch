@@ -1,0 +1,12 @@
+diff -aurN shotwell-0.12.1.orig/plugins/Makefile.plugin.mk shotwell-0.12.1/plugins/Makefile.plugin.mk
+--- shotwell-0.12.1.orig/plugins/Makefile.plugin.mk	2012-04-07 12:33:35.358408757 +0200
++++ shotwell-0.12.1/plugins/Makefile.plugin.mk	2012-04-07 12:41:17.488631334 +0200
+@@ -34,7 +34,7 @@
+ CFILES := $(notdir $(SRC_FILES:.vala=.c))
+ OFILES := $(notdir $(SRC_FILES:.vala=.o))
+ 
+-CFLAGS := `pkg-config --print-errors --cflags $(EXT_PKGS) $(PLUGIN_PKGS)` -nostdlib -export-dynamic $(PLUGIN_CFLAGS)
++CFLAGS := `pkg-config --print-errors --cflags $(EXT_PKGS) $(PLUGIN_PKGS)` -nostdlib -export-dynamic $(PLUGIN_CFLAGS) $(OPTFLAGS)
+ LIBS := `pkg-config --print-errors --libs $(EXT_PKGS) $(PLUGIN_PKGS)`
+ DEFINES := -D_VERSION='"$(PLUGINS_VERSION)"' -DGETTEXT_PACKAGE='"shotwell"'
+ 
