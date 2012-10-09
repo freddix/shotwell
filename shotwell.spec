@@ -1,12 +1,13 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.13.0
-Release:	2
+Version:	0.13.1
+Release:	2.2
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://www.yorba.org/download/shotwell/0.13/%{name}-%{version}.tar.xz
-# Source0-md5:	c1c3e6744e830b4db38219bb470ade4e
+# Source0-md5:	71eb1346093705ca2b37c12a21994d14
 Patch0:		%{name}-build.patch
+Patch1:		%{name}-libexec.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gstreamer-plugins-base-devel
@@ -32,12 +33,15 @@ Requires:	glib-networking
 Requires:	libgphoto2-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_libexecdir	%{_libdir}/shotwell
+
 %description
 Photo organizer.
 
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 export CFLAGS="%{rpmcflags}"
@@ -46,8 +50,7 @@ export CFLAGS="%{rpmcflags}"
 	--disable-icon-update		\
 	--disable-schemas-compile	\
 	--lib=%{_lib}			\
-	--prefix=%{_prefix}		\
-	--release
+	--prefix=%{_prefix}
 
 %{__make} \
 	CC="%{__cc}"				\
@@ -87,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/shotwell
 %attr(755,root,root) %{_bindir}/shotwell-video-thumbnailer
+%attr(755,root,root) %{_libexecdir}/shotwell-settings-migrator
 
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -101,4 +105,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/glib-2.0/schemas/org.yorba.shotwell-extras.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.yorba.shotwell.gschema.xml
+%{_datadir}/GConf/gsettings/shotwell.convert
 
