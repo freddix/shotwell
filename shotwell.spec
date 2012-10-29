@@ -34,6 +34,7 @@ Requires(post,postun):	glib-gio-gsettings
 Requires(post,postun):	hicolor-icon-theme
 Requires:	glib-networking
 Requires:	libgphoto2-runtime
+Requires:	xdg-utils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/shotwell
