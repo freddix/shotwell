@@ -1,7 +1,7 @@
 Summary:	Photo organizer
 Name:		shotwell
 Version:	0.13.1
-Release:	3
+Release:	4
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://www.yorba.org/download/shotwell/0.13/%{name}-%{version}.tar.xz
@@ -13,11 +13,11 @@ Patch1:		%{name}-libexec.patch
 Patch2:		%{name}-usrmove.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
-BuildRequires:	gstreamer-plugins-base-devel
+BuildRequires:	gstreamer010-plugins-base-devel
 BuildRequires:	gtk+3-webkit-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libexif-devel
-BuildRequires:	libgee-devel
+BuildRequires:	libgee06-devel
 BuildRequires:	libgexiv2-devel
 BuildRequires:	libgphoto2-devel
 BuildRequires:	libraw-devel
