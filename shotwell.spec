@@ -1,11 +1,11 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.13.1
-Release:	5
+Version:	0.14.0
+Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://www.yorba.org/download/shotwell/0.13/%{name}-%{version}.tar.xz
-# Source0-md5:	71eb1346093705ca2b37c12a21994d14
+Source0:	http://www.yorba.org/download/shotwell/0.14/%{name}-%{version}.tar.xz
+# Source0-md5:	14b8e02091376fa69ac0a04ba61ea608
 Patch0:		%{name}-build.patch
 # http://redmine.yorba.org/issues/5050
 Patch1:		%{name}-libexec.patch
@@ -13,12 +13,12 @@ Patch1:		%{name}-libexec.patch
 Patch2:		%{name}-usrmove.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
-BuildRequires:	gstreamer010-plugins-base-devel
+BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	gtk+3-webkit-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libexif-devel
 BuildRequires:	libgee06-devel
-BuildRequires:	libgexiv2-devel
+BuildRequires:	libgexiv2-devel >= 0.4.90
 BuildRequires:	libgphoto2-devel
 BuildRequires:	libraw-devel
 BuildRequires:	libsoup-devel
@@ -35,6 +35,8 @@ Requires(post,postun):	hicolor-icon-theme
 Requires:	glib-networking
 Requires:	libgphoto2-runtime
 Requires:	xdg-utils
+Suggests:	gstreamer-plugins-bad
+Suggests:	gstreamer-plugins-ugly
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/shotwell
