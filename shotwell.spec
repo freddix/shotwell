@@ -1,11 +1,11 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.14.0
+Version:	0.14.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://www.yorba.org/download/shotwell/0.14/%{name}-%{version}.tar.xz
-# Source0-md5:	14b8e02091376fa69ac0a04ba61ea608
+# Source0-md5:	bb5783f9265e1ce2d4c9f354987c3ab1
 Patch0:		%{name}-build.patch
 # http://redmine.yorba.org/issues/5050
 Patch1:		%{name}-libexec.patch
@@ -71,9 +71,6 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_iconsdir}/hicolor/scalable/apps}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-# duplicated locale
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{ta_IN,te_IN}
 
 %find_lang %{name} --with-gnome
 %find_lang %{name}-extras
