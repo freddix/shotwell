@@ -1,30 +1,23 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.14.1
-Release:	2
+Version:	0.15.0
+Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://www.yorba.org/download/shotwell/0.14/%{name}-%{version}.tar.xz
-# Source0-md5:	bb5783f9265e1ce2d4c9f354987c3ab1
+Source0:	http://www.yorba.org/download/shotwell/0.15/%{name}-%{version}.tar.xz
+# Source0-md5:	8b33dd5df51f49e7f4f451b431d7c133
 Patch0:		%{name}-build.patch
-# http://redmine.yorba.org/issues/5050
-Patch1:		%{name}-libexec.patch
-# http://redmine.yorba.org/issues/5181
-Patch2:		%{name}-usrmove.patch
-# http://redmine.yorba.org/issues/7012
-Patch3:		%{name}-libraw0.15.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	gtk+3-webkit-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libexif-devel
-BuildRequires:	libgee06-devel
+BuildRequires:	libgee-devel
 BuildRequires:	libgexiv2-devel >= 0.4.90
 BuildRequires:	libgphoto2-devel
 BuildRequires:	libraw-devel
 BuildRequires:	libsoup-devel
-BuildRequires:	libunique3-devel
 BuildRequires:	pkg-config
 BuildRequires:	rest-devel
 BuildRequires:	sqlite3-devel
@@ -49,9 +42,6 @@ Photo organizer.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 export CFLAGS="%{rpmcflags}"
@@ -60,6 +50,7 @@ export CFLAGS="%{rpmcflags}"
 	--disable-icon-update		\
 	--disable-schemas-compile	\
 	--lib=%{_lib}			\
+	--libexec=%{_libexecdir}	\
 	--prefix=%{_prefix}
 
 %{__make} \
@@ -74,6 +65,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_iconsdir}/hicolor/scalable/apps}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# such locale names are not shipped with glibc...
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{af_ZA,id_ID,nn_NO,ta_IN,te_IN,tr_TR}
 
 %find_lang %{name} --with-gnome
 %find_lang %{name}-extras
@@ -96,8 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/shotwell
-%attr(755,root,root) %{_bindir}/shotwell-video-thumbnailer
 %attr(755,root,root) %{_libexecdir}/shotwell-settings-migrator
+%attr(755,root,root) %{_libexecdir}/shotwell-video-thumbnailer
 
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
