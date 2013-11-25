@@ -1,11 +1,11 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.15.0
-Release:	2
+Version:	0.15.1
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://www.yorba.org/download/shotwell/0.15/%{name}-%{version}.tar.xz
-# Source0-md5:	8b33dd5df51f49e7f4f451b431d7c133
+# Source0-md5:	5af4cfb819249a879a4649a9c7d089e5
 Patch0:		%{name}-build.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
