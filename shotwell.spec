@@ -1,20 +1,21 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.15.1
+Version:	0.18.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://www.yorba.org/download/shotwell/0.15/%{name}-%{version}.tar.xz
-# Source0-md5:	5af4cfb819249a879a4649a9c7d089e5
+Source0:	https://download.gnome.org/sources/shotwell/0.18/%{name}-%{version}.tar.xz
+# Source0-md5:	856b69fe67bc8bd42a6985e042041daf
 Patch0:		%{name}-build.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
+BuildRequires:	gnome-doc-utils
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	gtk+3-webkit-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libexif-devel
 BuildRequires:	libgee-devel
-BuildRequires:	libgexiv2-devel >= 0.4.90
+BuildRequires:	libgexiv2-devel >= 0.10.0
 BuildRequires:	libgphoto2-devel
 BuildRequires:	libraw-devel
 BuildRequires:	libsoup-devel
@@ -66,12 +67,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_iconsdir}/hicolor/scalable/apps}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# such locale names are not shipped with glibc...
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{af_ZA,id_ID,nn_NO,ta_IN,te_IN,tr_TR}
-
 %find_lang %{name} --with-gnome
-%find_lang %{name}-extras
-cat %{name}-extras.lang >> %{name}.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
