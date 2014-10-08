@@ -1,11 +1,11 @@
 Summary:	Photo organizer
 Name:		shotwell
-Version:	0.18.0
+Version:	0.20.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/shotwell/0.18/%{name}-%{version}.tar.xz
-# Source0-md5:	856b69fe67bc8bd42a6985e042041daf
+Source0:	https://download.gnome.org/sources/shotwell/0.20/%{name}-%{version}.tar.xz
+# Source0-md5:	f830bcee67ab8cf14648becdd5569ebb
 Patch0:		%{name}-build.patch
 URL:		http://www.yorba.org/shotwell/
 BuildRequires:	dbus-glib-devel
@@ -57,8 +57,7 @@ export CFLAGS="%{rpmcflags}"
 %{__make} \
 	CC="%{__cc}"				\
 	LDFLAGS="%{rpmcflags} %{rpmldflags}"	\
-	OPTFLAGS="%{rpmcflags}"			\
-	USER_VALAFLAGS="-X -O2"
+	OPTFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
